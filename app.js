@@ -1,18 +1,31 @@
-// Window objects / methods / properties
+// välimõõdud ja sisemõõdud
 
-// alert
-// window.alert('tere hommikust');
-// alert('tere hommikust');
+let väliKõrgus = window.outerHeight;
+let väliLaius = window.outerWidth;
 
-//prompt
+let siseKõrgus = window.innerHeight;
+let siseLaius = window.innerWidth;
 
-const sisend = prompt('sisesta oma nimi');
-alert('tere hommikust ' + sisend);
+console.log(väliKõrgus);
+console.log(väliLaius);
 
-//confirm
-if(confirm('Kas oled nõus')) {
-    console.log('jah')
-}
-else{
-    console.log('ei');
-}
+console.log(siseKõrgus);
+console.log(siseLaius);
+
+// scroll 
+
+console.log(window.scrollY);
+
+// location object
+
+let objekt = window.location;
+let hname = window.location.hostname;
+let prt = window.location.port;
+let search = window.location.search;
+console.log(objekt);
+console.log(prt);
+console.log(search);
+
+//redirect
+
+// window.location.reload();
