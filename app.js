@@ -1,31 +1,17 @@
-// välimõõdud ja sisemõõdud
+// document
 
-let väliKõrgus = window.outerHeight;
-let väliLaius = window.outerWidth;
+let sisu;
+// dokumendi omadused
+sisu = document; // sisu HTMLis
+sisu = document.all; // sisu kasutamisjärjekorras
+sisu = document.all[2]; // konkreetne HTML element
+sisu = document.all.length; // palju on elemente kokku
+sisu = document.head; // head sisu
+sisu = document.body; // body sisu
+sisu = document.doctype; // dokumendi tüüp
+sisu = document.domain;
+sisu = document.URL;
+sisu = document.characterSet;
+sisu = document.contentType;
 
-let siseKõrgus = window.innerHeight;
-let siseLaius = window.innerWidth;
-
-console.log(väliKõrgus);
-console.log(väliLaius);
-
-console.log(siseKõrgus);
-console.log(siseLaius);
-
-// scroll 
-
-console.log(window.scrollY);
-
-// location object
-
-let objekt = window.location;
-let hname = window.location.hostname;
-let prt = window.location.port;
-let search = window.location.search;
-console.log(objekt);
-console.log(prt);
-console.log(search);
-
-//redirect
-
-// window.location.reload();
+console.log(sisu);
