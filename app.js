@@ -1,27 +1,43 @@
 // single element
 
-sisu = document.getElementById('title'); // HTML sisu
-id = document.getElementById('title').id; // id
-klass = document.getElementById('title').className; // klass
+// elemendid klassi järgi
+let sisu;
+sisu = document.getElementsByClassName('collection-item'); // HTML sisu
 
-// stiili muutmine
-sisu.style.background = '#333';
-sisu.style.color = '#fff';
-sisu.style.padding = '15px';
-
-document.querySelector('li').style.color = 'red'; // leiab ESIMESE sellise elemendi
-document.querySelector('ul li'). style.color = 'blue';
-document.querySelector('li:last-child'). style.color = 'green' ;
-document.querySelector('li:nth-child(2)'). style.color = 'red' ;
-
-// sisu muutmine
-sisu.textContent = 'Minu ülesanded'; // textContent
-sisu.innerText = 'Just minu ülesanded';
-sisu.innerHTML = '<span style="color: green;">Ülesanded</span>';
-
-// query selector
-sisu = document.querySelector('h5');
-sisu = document.querySelector('#title');
-sisu = document.querySelector('.card-title');
 
 console.log(sisu);
+console.log(sisu[0]);
+sisu[0].style.color = 'orange';
+sisu[2].textContent = 'Õpi arvuti võrke';
+
+// elemendid query selectoriga
+let nimekirjaElemendid = document.querySelector('ul').getElementsByClassName('collection-item');
+console.log(nimekirjaElemendid);
+
+// elemendid elemendi tagi järgi
+nimekirjaElemendid = document.getElementsByTagName('li');
+console.log(nimekirjaElemendid);
+
+// teisenda HTML collection arryiks (massiiviks)
+
+nimekirjaElemendid = Array.from(nimekirjaElemendid);
+console.log(nimekirjaElemendid);
+
+nimekirjaElemendid.reverse();
+console.log(nimekirjaElemendid);
+
+// massiivi läbimine tsüklis
+for(let i = 0; i < nimekirjaElemendid.length; i++){
+    console.log(nimekirjaElemendid[i].className)
+};
+
+// forEach
+nimekirjaElemendid.forEach(function(element){
+    console.log(element);
+    element.style.background = '#ddd';
+})
+
+let nimekiriPaaritu = document.querySelectorAll('li:nth-child(odd)');
+console.log(nimekiriPaaritu);
+let nimekiriPaaris = document.querySelectorAll('li:nth-child(even)');
+console.log(nimekiriPaaris);
