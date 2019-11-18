@@ -15,3 +15,13 @@ uusPealkiri.id = 'newTitle';
 // asenda vana pealkiri uuega
 div.replaceChild(uusPealkiri, vanaPealkiri);
 console.log(uusPealkiri);
+
+const vana = document.querySelector('.card-title');
+const wrap = document.querySelector('.card-content');
+
+const uus = document.createElement('h3');
+uus.textContent =  'Ülesanded';
+uus.className = 'card-title';
+uus.id = 'title';
+console.log(vana);
+wrap.replaceChild(uus, vana);
