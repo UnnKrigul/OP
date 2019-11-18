@@ -1,27 +1,11 @@
-// elementide asendamine
+// elementide kustutamine
 
-// leiame vana elemendi
+const listElem = document.querySelectorAll('li');
+console.log(listElem);
 
-const vanaPealkiri = document.querySelector('h5');
-const div = document.querySelector('.card-action');
+//kustuta konkreetne element
 
-// loo uus element
+listElem[2].remove();
 
-const uusPealkiri = document.createElement('h3');
-// uusPealkiri.appendChild(document.createTextNode('Lisatud ülesanded')); on sama mis
-uusPealkiri.textContent = 'Lisatud ülesanded';
-uusPealkiri.id = 'newTitle';
-
-// asenda vana pealkiri uuega
-div.replaceChild(uusPealkiri, vanaPealkiri);
-console.log(uusPealkiri);
-
-const vana = document.querySelector('.card-title');
-const wrap = document.querySelector('.card-content');
-
-const uus = document.createElement('h3');
-uus.textContent =  'Ülesanded';
-uus.className = 'card-title';
-uus.id = 'title';
-console.log(vana);
-wrap.replaceChild(uus, vana);
+const nimekiri = document.querySelector('.collection');
+nimekiri.removeChild(listElem[1]);
