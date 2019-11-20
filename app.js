@@ -1,26 +1,30 @@
 // sündmused
 
-const form = document.querySelector('form');
-const lisaUus = document.getElementById('task');
-const header = document.querySelector('h5');
-lisaUus.value = '';
-// formi saatmine
-form.addEventListener('submit', syndmus)
+// lehe kaardi pealkiri
+// const sisu = document.querySelector('.card-title');
+// console.log(sisu);
 
-// lisaUus.addEventListener('keydown', syndmus);
-// lisaUus.addEventListener('keyup', syndmus);
-// lisaUus.addEventListener('keypress', syndmus);
+// sündmus
+// function logi(){
+//     console.log('tere')
+// }
+// sisu.addEventListener('click', logi)
 
-// lisaUus.addEventListener('focus', syndmus);
-// lisaUus.addEventListener('blur', syndmus);
 
-// lisaUus.addEventListener('paste', syndmus);
-// lisaUus.addEventListener('cut', syndmus);
+// bubbling
+// lehe kaardi sisu
+// document.querySelector('.card-content').addEventListener('click', function(e){
+//     console.log('card-content')
+// });
 
-lisaUus.addEventListener('input', syndmus);
 
-function syndmus(e){
-    // katsetame väärtust
-    console.log(lisaUus.value);
-    header.innerText = lisaUus.value;
-};
+// delegeerimine
+
+const kustuta = document.querySelector('.delete-item');
+
+kustuta.addEventListener('click', del);
+
+function del(e){
+    console.log('kustuta');
+    e.target.parentElement.remove();
+}
