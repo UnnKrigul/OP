@@ -1,7 +1,16 @@
 // sündmused
 
 const clearTasks = document.querySelector('.clear-tasks');
-clearTasks.addEventListener('click', function(e){
-    console.log('kustuta kõik');
-    // e.preventDefault();
-})
+
+function delAll(e){
+    let sisu = e;
+    sisu = e.target.className;
+    // tüüp
+    sisu = e.type;
+    // sündmuse kordinaadid
+    sisu = e.clientY;
+    sisu = e.offsetY
+    console.log(sisu);
+};
+
+clearTasks.addEventListener('click', delAll);
