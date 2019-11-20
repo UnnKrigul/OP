@@ -1,30 +1,37 @@
-// sündmused
+// storage
 
-// lehe kaardi pealkiri
-// const sisu = document.querySelector('.card-title');
-// console.log(sisu);
+// salvestamine
+// localStorage.setItem('nimi', 'Unn');
+// localStorage.setItem('perenimi', 'Krigul');
 
-// sündmus
-// function logi(){
-//     console.log('tere')
-// }
-// sisu.addEventListener('click', logi)
+// väärtuse eemaldamine
+// localStorage.removeItem('nimi');
 
+// väärtuste lugemine
+// const perenimi = localStorage.getItem('perenimi');
+// const nimi = localStorage.getItem('nimi');
 
-// bubbling
-// lehe kaardi sisu
-// document.querySelector('.card-content').addEventListener('click', function(e){
-//     console.log('card-content')
-// });
+// console.log(nimi+perenimi);
 
+// puhasta kõik andmed
 
-// delegeerimine
+// localStorage.clear()
 
-const kustuta = document.querySelector('.delete-item');
+document.querySelector('form').addEventListener('submit', salvesta);
 
-kustuta.addEventListener('click', del);
-
-function del(e){
-    console.log('kustuta');
-    e.target.parentElement.remove();
-}
+function salvesta(e){
+    const value = document.getElementById('task').value;
+    let ylesanded;
+    if(localStorage.getItem('tasks') === null){
+        ylesanded = [];
+        localStorage.setItem('tasks', JSON.stringify(ylesanded));
+        console.log('ylesanded');
+    }
+    else {
+        console.log('tuleb lugeda');
+        ylesanded = JSON.parse(localStorage.getItem('tasks'));
+    }
+    ylesanded.push(value);
+    console.log(ylesanded);
+    localStorage.setItem('tasks', JSON.stringify(ylesanded))
+};
