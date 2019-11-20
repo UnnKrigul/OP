@@ -1,20 +1,26 @@
 // sündmused
 
-const clearTasks = document.querySelector('.clear-tasks');
+const form = document.querySelector('form');
+const lisaUus = document.getElementById('task');
 const header = document.querySelector('h5');
-const card = document.querySelector('.card');
+lisaUus.value = '';
+// formi saatmine
+form.addEventListener('submit', syndmus)
+
+// lisaUus.addEventListener('keydown', syndmus);
+// lisaUus.addEventListener('keyup', syndmus);
+// lisaUus.addEventListener('keypress', syndmus);
+
+// lisaUus.addEventListener('focus', syndmus);
+// lisaUus.addEventListener('blur', syndmus);
+
+// lisaUus.addEventListener('paste', syndmus);
+// lisaUus.addEventListener('cut', syndmus);
+
+lisaUus.addEventListener('input', syndmus);
+
 function syndmus(e){
-    document.body.style.backgroundColor = `rgb(${e.offsetX}, ${e.offsetY}, 50)`
+    // katsetame väärtust
+    console.log(lisaUus.value);
+    header.innerText = lisaUus.value;
 };
-
-// card.addEventListener('mouseout', syndmus);
-// card.addEventListener('dblclick', syndmus);
-// card.addEventListener('mousedown', syndmus);
-// card.addEventListener('mouseup', syndmus);
-// card.addEventListener('mouseenter', syndmus);
-// card.addEventListener('mouseleave', syndmus);
-// card.addEventListener('mouseover', syndmus);
-// card.addEventListener('mouseout', syndmus);
-card.addEventListener('mousemove', syndmus);
-
-clearTasks.addEventListener('click', syndmus);
