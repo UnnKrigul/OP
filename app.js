@@ -1,16 +1,20 @@
 // sündmused
 
 const clearTasks = document.querySelector('.clear-tasks');
-
-function delAll(e){
-    let sisu = e;
-    sisu = e.target.className;
-    // tüüp
-    sisu = e.type;
-    // sündmuse kordinaadid
-    sisu = e.clientY;
-    sisu = e.offsetY
-    console.log(sisu);
+const header = document.querySelector('h5');
+const card = document.querySelector('.card');
+function syndmus(e){
+    document.body.style.backgroundColor = `rgb(${e.offsetX}, ${e.offsetY}, 50)`
 };
 
-clearTasks.addEventListener('click', delAll);
+// card.addEventListener('mouseout', syndmus);
+// card.addEventListener('dblclick', syndmus);
+// card.addEventListener('mousedown', syndmus);
+// card.addEventListener('mouseup', syndmus);
+// card.addEventListener('mouseenter', syndmus);
+// card.addEventListener('mouseleave', syndmus);
+// card.addEventListener('mouseover', syndmus);
+// card.addEventListener('mouseout', syndmus);
+card.addEventListener('mousemove', syndmus);
+
+clearTasks.addEventListener('click', syndmus);
