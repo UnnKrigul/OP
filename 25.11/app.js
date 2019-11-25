@@ -1,27 +1,53 @@
 // inimese kirjeldus OOP abil
-// inimese konstruktor
+// klasside kasutus
 
-function Isik(e, p, skp){
-    this.eesnimi = e;
-    this.perenimi = p;
-    this.synnikuupaev = new Date(skp);
+class Isik {
+    // konstruktor
+    constructor(e, p, skp){
+        this.eesnimi = e;
+        this.perenimi = p;
+        this.synnikuupaev = new Date(skp);
+    }
 
+    // Tervitus meetod
+    tervitus(){
+        return `Tere ${this.eesnimi} ${this.perenimi}`
+    };
+
+
+    // Vanuse meetod
+    vanus(){
+        const vahe = Date.now() - this.synnikuupaev.getTime();
+        const vanusDate = new Date(vahe);
+        const aasta = vanusDate.getUTCFullYear();
+        const vanus = aasta - 1970;
+        return vanus;
+    };
+
+    // Abiellumine
+    abiellumine(uus){
+        this.perenimi = uus;
+    }
+
+    // Staatiline meetod
+    static kuutasu(){
+        return 5;
+    }
+};
+
+// Kliendi klass
+
+class Klient extends Isik{
+    constructor(e, p, skp, t, s){
+        super(e, p, skp);
+        this.telefon = t;
+        this.staatus = s;
+    };
 }
 
-Isik.prototype.taisNimi = function(){
-    return `${this.eesnimi} ${this.perenimi}`;
-}
-Isik.prototype.arvutaVanus = function(){
-    const vahe = Date.now() - this.synnikuupaev.getTime();
-    const vanusDateKujul = new Date(vahe);
-    const taisAasta = vanusDateKujul.getUTCFullYear();
-    const vanus = taisAasta -1970;
-    return vanus;
-}
-
-const unn = new Isik('Unn', 'Krigul', '06-15-1997');
-const kadi = new Isik('Kadi', 'Tamm', '07-01-1922');
-console.log(kadi.arvutaVanus());
-console.log(kadi.taisNimi());
+const kadi = new Klient('Kadi', 'Tamm', '1997-06-15', '55555555', 'hõbe');
+kadi.abiellumine('Adamson');
 console.log(kadi);
-
+console.log(kadi.synnikuupaev);
+console.log(kadi.tervitus());
+console.log(kadi.vanus());
