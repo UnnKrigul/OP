@@ -28,21 +28,32 @@ function Raamat(a, p, i){
       <td>${r.pealkiri}</td>
       <td>${r.autor}</td>
       <td>${r.isbn}</td>
+      <td><a href="#" class="delete"><i class="fas fa-times"></i></a></td>
     `;
     // lisame rida tabelisse
     tabel = document.getElementById('book-list');
     tabel.appendChild(rida);
   }
 
+  // Raamatu kustutamine tabelist
+  KL.prototype.kustutaRaamatTabelist = function(kustutaElement){
+    const tabeliRida = kustutaElement.parentElement.parentElement.parentElement;
+    tabeliRida.remove();
+  }
+
   // teate väljastamine
-  KL.prototype.teade = function(s){
+  KL.prototype.teade = function(s, stiil){
     // loome div, kuhu lisame teate
     const div = document.createElement('div');
+    div.className = `alert ${stiil}`;
     const tekst = document.createTextNode(s);
     div.appendChild(tekst);
     const kont = document.querySelector('.container')
     const vorm = document.getElementById('book-form');
     kont.insertBefore(div, vorm);
+    setTimeout(function(){
+      document.querySelector('.alert').remove()
+    }, 5000);
   };
   
   // kirjeldame raamatu lisamise sündmust
@@ -61,15 +72,25 @@ function Raamat(a, p, i){
   
     // kui andmeid on puudu
     if(pealkiri == '' | author == '' | isbn == ''){
-        kl.teade('Tuleb täita kõik väljad');
+        kl.teade('Tuleb täita kõik väljad', 'invalid');
     }
     else{
         kl.lisaRaamatTabelisse(raamat);
-        kl.teade('Raamat on lisatud');
+        kl.teade('Raamat on lisatud', 'valid');
     }
   
     // puhastame väljad sisestatud andmetest
     kl.puhastaSisend();
   
     e.preventDefault();
+  }
+
+  // Raamatu kustutamise sündmus
+
+  document.getElementById('book-list').addEventListener('click', kustutaRaamat);
+  function kustutaRaamat(e){
+    const kl = new KL();
+
+    kl.kustutaRaamatTabelist(e.target);
+    kl.teade('Raamat on kustutatud', 'valid')
   }
