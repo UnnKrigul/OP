@@ -28,7 +28,7 @@ function Raamat(a, p, i){
       <td>${r.pealkiri}</td>
       <td>${r.autor}</td>
       <td>${r.isbn}</td>
-      <td><a href="#" class="delete"><i class="fas fa-times"></i></a></td>
+      <td><a href="#" class="delete" id="del"><i class="fas fa-times"></i></a></td>
     `;
     // lisame rida tabelisse
     tabel = document.getElementById('book-list');
@@ -38,7 +38,10 @@ function Raamat(a, p, i){
   // Raamatu kustutamine tabelist
   KL.prototype.kustutaRaamatTabelist = function(kustutaElement){
     const tabeliRida = kustutaElement.parentElement.parentElement.parentElement;
-    tabeliRida.remove();
+    if(kustutaElement.className == 'fas fa-times'){
+      tabeliRida.remove();
+      return true;
+    }
   }
 
   // teate väljastamine
@@ -56,6 +59,20 @@ function Raamat(a, p, i){
     }, 5000);
   };
   
+  KL.prototype.salvestaRaamat = function(r){
+    // Loome raamatule hoidla LS-s
+    if(localStorage.getItem('raamatud') === null){
+      raamatud = [];
+    }
+    else{
+      raamatud = JSON.parse(localStorage.getItem('raamatud'));
+      console.log(raamatud);
+    }
+    raamatud.push(r);
+    localStorage.setItem('raamatud', JSON.stringify(raamatud));
+    console.log(raamatud);
+  }
+
   // kirjeldame raamatu lisamise sündmust
   document.getElementById('book-form').addEventListener('submit', lisaRaamat);
   // raamatu lisamise funktsioon
@@ -71,11 +88,14 @@ function Raamat(a, p, i){
     const kl = new KL();
   
     // kui andmeid on puudu
-    if(pealkiri == '' | author == '' | isbn == ''){
+    if(pealkiri == '' | autor == '' | isbn == ''){
         kl.teade('Tuleb täita kõik väljad', 'invalid');
     }
     else{
         kl.lisaRaamatTabelisse(raamat);
+
+        kl.salvestaRaamat(raamat)
+
         kl.teade('Raamat on lisatud', 'valid');
     }
   
@@ -90,7 +110,8 @@ function Raamat(a, p, i){
   document.getElementById('book-list').addEventListener('click', kustutaRaamat);
   function kustutaRaamat(e){
     const kl = new KL();
-
-    kl.kustutaRaamatTabelist(e.target);
-    kl.teade('Raamat on kustutatud', 'valid')
+    
+    if(kl.kustutaRaamatTabelist(e.target)){
+    kl.teade('Raamat on kustutatud', 'valid');
+    }
   }
