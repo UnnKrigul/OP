@@ -182,7 +182,7 @@ function kustutaRaamat(e){
   onKustutatud = kl.kustutaRaamatLS(isbn);
   
   // väljastame vastava teate
-  if(onKustutatud){
+  if(onKustutatud+){
    kl.teade('Raamat on kustutatud', 'valid');
   }
   
